@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		table, th, td{
+  			border: 1px solid blue;
+  			border-collapse:collapse;
+  		}
+  		td{
+  			width: 30px;
+  			height: 30px;
+  			text-align: center;
+  		}
+  		.tdred{
+  			color: red;
+  		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	var arr = [
+		[1, 2, 33, 5],
+		[2, 10, 15, 16],
+		[3, 1, 21, 20]
+	]
+	function HaoLei(arr, id) {
+		// 获取输出位置
+		var root = document.getElementById(id)
+		// 创建table对象
+		var tableObj = document.createElement("table")
+		// 添加到输出位置
+		root.appendChild(tableObj)
+		// var tdElm = document.createElement("td")
+		for(var i = 0; i <arr.length; i++){
+			// 创建tr元素
+			var trElm = document.createElement("tr")
+			// 循环插入tr
+			tableObj.appendChild(trElm)
+			// 记录列最大值 
+			var arrList = arr[0]
+			// 得到所有tr对象
+			var trObjs = tableObj.children
+	
+			for (var j = 0; j < arr[i].length; j++) {
+				// 创建td元素
+				var tdElm = document.createElement("td")
+				// 插入tr
+				trObjs[i].appendChild(tdElm)
+				// 插入数据
+				tdElm.innerHTML = arr[i][j]
+				// 获得元素，修改样式
+				tdElm.setAttribute("class", "tdred")			 
+				if (arrList[j] < arr[i][j] ) {
+					arrList[j] = arr[i][j]
+					trObjs[i-1].children[j].removeAttribute("class", "tdred")
+				}
+				else if (arrList[j] > arr[i][j]) {
+					tdElm.removeAttribute("class", "tdred")
+				}
+			}
+	
+		}
+	}
+HaoLei(arr, "box")
+// console.log(arrList)
+</script>
