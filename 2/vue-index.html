@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css" media="screen">
+		select{
+			width: 60px;
+			height: 300px;
+			text-align: center;
+			margin-left: 30px;
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<select multiple   v-model="a">
+			<option
+			 v-show="b != item && c != item"
+			 v-for="item in arr" >{{item}}</option>
+		</select>
+		<select multiple v-model="b">
+			<!-- multiple -->
+			<option
+			v-show="a != item && c != item"
+			v-for="item in arr" >{{item}}</option>
+		</select>
+		<select multiple  v-model="c">
+			<option 
+			v-show="a != item && b != item"
+			v-for="item in arr" >{{item}}</option>
+		</select>
+
+	</div>
+
+</body>
+</html>
+<script src="js/vue.min.js"></script>
+
+<script>
+	const vm = new Vue({
+		el: '#app',
+		data: {
+			arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+			// item 不在 a,c 
+			a: "",
+			b: "",
+			c: ""
+		}
+	})
+</script>
